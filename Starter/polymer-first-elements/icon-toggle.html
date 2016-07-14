@@ -10,15 +10,23 @@
       :host {
         display: inline-block;
       }
+      iron-icon {
+        fill: rgba(0,0,0,0);
+        stroke: currentcolor;
+      }
+      :host([pressed]) iron-icon {
+        fill: currentcolor;
+      }
     </style>
 
     <!-- local DOM goes here -->
-    <span>Not much here yet.</span>
+
+    <iron-icon icon="change-history"></iron-icon>
   </template>
 
   <script>
     Polymer({
-        is: 'icon-toggle',
+      is: 'icon-toggle',
     });
   </script>
 
