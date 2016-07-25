@@ -1,0 +1,17 @@
+{
+  "name": "todo",
+  "description": "simple polymer todo app",
+  "main": "server.js",
+  "authors": [
+    "stephen king"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/tgfbikes/Polymer",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
