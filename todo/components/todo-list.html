@@ -1,0 +1,23 @@
+<dom-module id="stv-todos-list">
+
+  <template>
+    <h3>Todo List</h3>
+    <p>[[todos]]</p>
+  </template>
+
+  <script>
+  var Todos = Polymer({
+    is: 'stv-todos-list',
+    properties: {
+      todos: Array
+    },
+    created: function () {
+      console.log('stv-todos-list created');
+    },
+    ready: function () {
+      console.log('stv-todos-list ready');
+    }
+  });
+  </script>
+
+</dom-module>
