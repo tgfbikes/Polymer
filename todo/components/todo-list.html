@@ -1,12 +1,28 @@
+<link rel="import" href="paper-card/paper-card.html">
+<link rel="import" href="paper-button/paper-button.html">
+
 <dom-module id="stv-todos-list">
 
   <template>
+
+    <style>
+     paper-card {
+       --paper-card-header-color: #498F73;
+       @apply(--paper-card-header);
+       font-family: Tahoma;
+     }
+    </style>
+
     <h3>Todo List</h3>
-    <ul>
       <template is="dom-repeat" items="{{todos}}" as="todo">
-        <li>{{todo.id}}, {{todo.name}}</li>
+        <paper-card heading="[[todo.name]]">
+          <div class="card-content">[[todo.description]]</div>
+          <div class="card-actions">
+            <paper-button>Edit</paper-button>
+            <paper-button>Delete</paper-button>
+          </div>
+        </paper-card>
       </template>
-    </ul>
   </template>
 
   <script>
