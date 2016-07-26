@@ -2,7 +2,11 @@
 
   <template>
     <h3>Todo List</h3>
-    <p>[[todos]]</p>
+    <ul>
+      <template is="dom-repeat" items="{{todos}}" as="todo">
+        <li>{{todo.id}}, {{todo.name}}</li>
+      </template>
+    </ul>
   </template>
 
   <script>
