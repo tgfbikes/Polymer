@@ -1,24 +1,32 @@
-<dom-module id="todos-element">
+<link rel="import" href="todo-list.html">
+<dom-module id="stv-todos">
 
   <template>
     <h1>[[heading]]</h1>
+    <stv-todos-list todos="[[todos]]"></stv-todos-list>
   </template>
 
   <script>
   var Todos = Polymer({
-
-    is: 'todos-element',
+    is: 'stv-todos',
     properties: {
       heading: {
         type: String,
         value: 'Holy Moly Todos'
+      },
+      todos: {
+        type: Array,
+        value: [
+          {id: 1, name: 'whats up'},
+          {id: 2, name: 'not much'}
+        ],
       }
     },
     created: function () {
-      console.log('Todos component created');
+      console.log('stv-todos created');
     },
     ready: function () {
-      console.log('Todos component ready');
+      console.log('stv-todos ready');
     }
   });
   </script>
