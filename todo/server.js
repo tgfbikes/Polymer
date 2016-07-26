@@ -13,8 +13,10 @@ var app = express();
 app.use(morgan('dev'));
 //app.use(passport.initialize())
 app.use(skipper());
+app.use(express.static('bower_components'));
+app.use(express.static('components'));
 
-app.get('*', function (req, res) {
+app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, '/index.html'));
 });
 

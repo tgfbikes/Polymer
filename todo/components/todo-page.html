@@ -1,0 +1,27 @@
+<dom-module id="todos-element">
+
+  <template>
+    <h1>[[heading]]</h1>
+  </template>
+
+  <script>
+  var Todos = Polymer({
+
+    is: 'todos-element',
+    properties: {
+      heading: {
+        type: String,
+        value: 'Holy Moly Todos'
+      }
+    },
+    created: function () {
+      console.log('Todos component created');
+    },
+    ready: function () {
+      console.log('Todos component ready');
+    }
+  });
+  </script>
+
+</dom-module>
+

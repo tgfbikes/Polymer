@@ -1,11 +1,11 @@
 {
   "name": "todo",
-  "description": "simple polymer todo app",
-  "main": "server.js",
+  "description": "",
+  "main": "",
   "authors": [
-    "stephen king"
+    "stvking <tgfbikes@gmail.com>"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/tgfbikes/Polymer",
   "ignore": [
     "**/.*",
