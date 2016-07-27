@@ -1,35 +1,60 @@
 <link rel="import" href="todo-list.html">
+<link rel="import" href="todo-nav-bar.html">
 
 <dom-module id="stv-todos">
 
   <template>
+    <stv-todo-nav-bar></stv-todo-nav-bar>
     <h1>[[heading]]</h1>
     <stv-todos-list todos="[[todos]]"></stv-todos-list>
   </template>
 
   <script>
-  var Todos = Polymer({
-    is: 'stv-todos',
-    properties: {
-      heading: {
-        type: String,
-        value: 'Holy Moly Todos'
+    Polymer({
+      is: 'stv-todos',
+      properties: {
+        heading: {
+          type: String,
+          value: 'Holy Moly Todos'
+        },
+        todos: {
+          type: Array,
+          value: [
+            {id: 1, name: 'whats up', description: 'Nick is a joker'},
+            {id: 2, name: 'not much', description: 'Nick is a joker again'}
+          ],
+          notify: true
+        }
       },
-      todos: {
-        type: Array,
-        value: [
-          {id: 1, name: 'whats up', description: 'Nick is a joker'},
-          {id: 2, name: 'not much', description: 'Nick is a joker again'}
-        ],
+      created: function () {
+        console.log('stv-todos created');
+      },
+      ready: function () {
+        var that = this;
+        console.log('stv-todos ready');
+        that.addEventListener('edit-todo', function (event) {
+          that.handleEdit(event.detail.id);
+        });
+        that.addEventListener('delete-todo', function (event) {
+          that.handleDelete(event.detail.id);
+        });
+      },
+      handleEdit: function (todoId) {
+        console.log('handling edit');
+      },
+      handleDelete: function (todoId) {
+        console.log('handling delete');
+        var that = this;
+        var newTodos = [];
+        newTodos = this.todos.filter(function (todo) {
+          return todo.id !== parseInt(todoId);
+        });
+        this.set('todos', newTodos);
+      },
+      createTodo: function () {
+        console.log('creating todo');
       }
-    },
-    created: function () {
-      console.log('stv-todos created');
-    },
-    ready: function () {
-      console.log('stv-todos ready');
-    }
-  });
+    });
   </script>
 
 </dom-module>

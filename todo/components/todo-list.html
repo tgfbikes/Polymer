@@ -1,43 +1,27 @@
-<link rel="import" href="paper-card/paper-card.html">
-<link rel="import" href="paper-button/paper-button.html">
+<link rel="import" href="./todo-list-item.html">
 
 <dom-module id="stv-todos-list">
 
   <template>
-
-    <style>
-     paper-card {
-       --paper-card-header-color: #498F73;
-       @apply(--paper-card-header);
-       font-family: Tahoma;
-     }
-    </style>
-
     <h3>Todo List</h3>
       <template is="dom-repeat" items="{{todos}}" as="todo">
-        <paper-card heading="[[todo.name]]">
-          <div class="card-content">[[todo.description]]</div>
-          <div class="card-actions">
-            <paper-button>Edit</paper-button>
-            <paper-button>Delete</paper-button>
-          </div>
-        </paper-card>
+        <stv-todo-list-item todo="[[todo]]" id="[[todo.id]]">
       </template>
   </template>
 
   <script>
-  var Todos = Polymer({
-    is: 'stv-todos-list',
-    properties: {
-      todos: Array
-    },
-    created: function () {
-      console.log('stv-todos-list created');
-    },
-    ready: function () {
-      console.log('stv-todos-list ready');
-    }
-  });
+    Polymer({
+      is: 'stv-todos-list',
+      properties: {
+        todos: Array
+      },
+      created: function () {
+        console.log('stv-todos-list created');
+      },
+      ready: function () {
+        console.log('stv-todos-list ready');
+      }
+    });
   </script>
 
 </dom-module>

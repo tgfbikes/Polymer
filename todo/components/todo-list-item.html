@@ -1,0 +1,44 @@
+<link rel="import" href="paper-card/paper-card.html">
+<link rel="import" href="paper-button/paper-button.html">
+
+<dom-module id="stv-todo-list-item">
+
+  <template>
+    <style>
+     paper-card {
+       --paper-card-header-color: #498F73;
+       font-family: Tahoma;
+       --paper-card-header: {
+         background-color: #d3d3d3;
+       }
+     }
+    </style>
+
+    <paper-card heading="[[todo.name]]">
+      <div class="card-content">[[todo.description]]</div>
+      <div class="card-actions">
+        <paper-button id="[[todo.id]]" on-tap="handleEdit">Edit</paper-button>
+        <paper-button id="[[todo.id]]" on-tap="handleDelete">Delete</paper-button>
+      </div>
+    </paper-card>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'stv-todo-list-item',
+      properties: {
+        todo: {
+          type: Object
+        }
+      },
+      handleEdit: function (event) {
+        this.fire('edit-todo', {id: event.target.id});
+      },
+      handleDelete: function (event) {
+        this.fire('delete-todo', {id: event.target.id});
+      }
+   });
+
+  </script>
+
+</dom-module>
