@@ -1,0 +1,59 @@
+<link rel="import" href="iron-form/iron-form.html">
+
+<dom-module id="stv-todo-modal">
+
+  <template>
+
+    <style>
+     .modal-header {
+       display: flex;
+       background-color: #3498D8;
+       color: #ECF0F1;
+     }
+     .paper-dialog-0  > *:first-child {
+       margin-top: 0;
+     }
+     paper-button {
+       color: #2C3E50;
+     }
+    </style>
+
+    <paper-dialog id="modal" modal>
+      <div class="modal-header">
+        <h3>Add a thing</h3>
+      </div>
+      <form is="iron-form" id="form">
+        <paper-input-container>
+          <label>Title</label>
+          <input is="iron-input" id="todoTitle" required>
+        </paper-input-container>
+        <paper-input-container>
+          <label>Description</label>
+          <input is="iron-input" id="todoDescription" required>
+        </paper-input-container>
+        <div class="buttons">
+          <paper-button
+              dialog-dismiss
+              class="add-todo-cancel">CANCEL</paper-button>
+          <paper-button
+              dialog-confirm
+              on-tap="handleCreateTodo"
+              class="add-todo-confirm">ADD A TODO</paper-button>
+        </div>
+      </form>
+    </paper-dialog>
+
+  </template>
+
+  <script>
+   Polymer({
+     is: 'stv-todo-modal',
+     handleCreateTodo: function (event) {
+       this.fire('create-todo', {
+         'title': this.$.todo-title,
+         'description': this.$.todo-description
+       });
+     }
+   });
+  </script>
+</dom-module>
