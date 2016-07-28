@@ -1,10 +1,14 @@
+<link rel="import" href="todo-modal.html">
 <link rel="import" href="paper-toolbar/paper-toolbar.html">
 <link rel="import" href="paper-icon-button/paper-icon-button.html">
 <link rel="import" href="iron-icons/iron-icons.html">
+<link rel="import" href="paper-dialog/paper-dialog.html">
+<link rel="import" href="paper-input/paper-input.html">
 
 <dom-module id="stv-todo-nav-bar">
 
   <template>
+
     <style>
      paper-toolbar {
        --paper-toolbar-background: #2C3E50;
@@ -12,13 +16,19 @@
      .add-todo {
        background-color: #E74C3C;
        border-radius: 50%;
+       position: absolute;
+       top: 40px;
+       right: 20px;
      }
     </style>
+
     <paper-toolbar>
-      <paper-icon-button icon="menu"></paper-icon-button>
+      <paper-icon-button icon="polymer"></paper-icon-button>
       <span class="title">Doing Polymer Things</span>
-      <paper-icon-button icon="add" class="add-todo" raised></paper-icon-button>
+      <paper-icon-button icon="add" class="add-todo" raised onclick="modal.open()"></paper-icon-button>
     </paper-toolbar>
+    <stv-todo-modal></stv-todo-modal>
+
   </template>
 
   <script>
