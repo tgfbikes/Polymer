@@ -5,7 +5,6 @@
 
   <template>
     <stv-todo-nav-bar></stv-todo-nav-bar>
-    <h1>[[heading]]</h1>
     <stv-todos-list todos="[[todos]]"></stv-todos-list>
   </template>
 
@@ -13,10 +12,6 @@
     Polymer({
       is: 'stv-todos',
       properties: {
-        heading: {
-          type: String,
-          value: 'Holy Moly Todos'
-        },
         todos: {
           type: Array,
           value: [

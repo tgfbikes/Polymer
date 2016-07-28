@@ -3,10 +3,20 @@
 <dom-module id="stv-todos-list">
 
   <template>
-    <h3>Todo List</h3>
-      <template is="dom-repeat" items="{{todos}}" as="todo">
-        <stv-todo-list-item todo="[[todo]]" id="[[todo.id]]">
-      </template>
+    <style>
+     :host {
+       width: 100%;
+     }
+     .list-item {
+       margin: 20px;
+       display: inline-block;
+     }
+    </style>
+    <template is="dom-repeat" items="{{todos}}" as="todo">
+      <div class="list-item">
+        <stv-todo-list-item todo="[[todo]]" id="[[todo.id]]"></stv-todo-list-item>
+      </div>
+    </template>
   </template>
 
   <script>
