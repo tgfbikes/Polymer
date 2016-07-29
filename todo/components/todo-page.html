@@ -4,8 +4,20 @@
 <dom-module id="stv-todos">
 
   <template>
+    <style>
+     .no-todos {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       font-family: Tahoma;
+     }
+    </style>
     <stv-todo-nav-bar></stv-todo-nav-bar>
     <stv-todos-list todos="[[todos]]"></stv-todos-list>
+    <div class="no-todos" hidden$="{{isTodos}}">
+      <h3>There are no things</h3>
+      <p>You can add more things by pressing the red plus button</p>
+    </div>
   </template>
 
   <script>
@@ -19,10 +31,20 @@
             {id: 2, name: 'not much', description: 'Nick is a joker again'}
           ],
           notify: true
+        },
+        isTodos: {
+          type: Boolean,
+          value: false
         }
       },
       ready: function () {
         var that = this;
+        if (this.todos.length > 0) {
+          this.set('isTodos', true);
+        } else {
+          this.set('isTodos', false);
+        }
+        console.log(this.isTodos);
         that.addEventListener('edit-todo', function (event) {
           that.handleEdit(event.detail.id);
         });
@@ -31,6 +53,13 @@
         });
         that.addEventListener('create-todo', function (event) {
           that.handleCreate(event.detail.title, event.detail.description);
+        });
+        that.addEventListener('todos-changed', function (event) {
+          if (that.todos.length > 0) {
+            that.set('isTodos', true);
+          } else {
+            that.set('isTodos', false);
+          }
         });
       },
       handleEdit: function (todoId) {
