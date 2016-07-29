@@ -21,33 +21,36 @@
           notify: true
         }
       },
-      created: function () {
-        console.log('stv-todos created');
-      },
       ready: function () {
         var that = this;
-        console.log('stv-todos ready');
         that.addEventListener('edit-todo', function (event) {
           that.handleEdit(event.detail.id);
         });
         that.addEventListener('delete-todo', function (event) {
           that.handleDelete(event.detail.id);
         });
+        that.addEventListener('create-todo', function (event) {
+          that.handleCreate(event.detail.title, event.detail.description);
+        });
       },
       handleEdit: function (todoId) {
         console.log('handling edit');
       },
       handleDelete: function (todoId) {
-        console.log('handling delete');
-        var that = this;
-        var newTodos = [];
-        newTodos = this.todos.filter(function (todo) {
-          return todo.id !== parseInt(todoId);
-        });
-        this.set('todos', newTodos);
+        var index;
+        for (var i = 0; i < this.todos.length; i++) {
+          if (this.todos[i].id === parseInt(todoId)) {
+            this.splice('todos', i, 1);
+          }
+        }
       },
-      createTodo: function () {
-        console.log('creating todo');
+      handleCreate: function (title, description) {
+        var newTodo = {
+          id: this.todos.length + 1,
+          name: title,
+          description: description
+        }
+        this.push('todos', newTodo);
       }
     });
   </script>

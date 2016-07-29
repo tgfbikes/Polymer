@@ -50,8 +50,8 @@
      is: 'stv-todo-modal',
      handleCreateTodo: function (event) {
        this.fire('create-todo', {
-         'title': this.$.todo-title,
-         'description': this.$.todo-description
+         'title': this.$.todoTitle.value,
+         'description': this.$.todoDescription.value
        });
      }
    });
