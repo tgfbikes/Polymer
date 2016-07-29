@@ -39,12 +39,9 @@
       },
       ready: function () {
         var that = this;
-        if (this.todos.length > 0) {
-          this.set('isTodos', true);
-        } else {
-          this.set('isTodos', false);
-        }
-        console.log(this.isTodos);
+
+        this.checkTodosArray(this.todos);
+
         that.addEventListener('edit-todo', function (event) {
           that.handleEdit(event.detail.id);
         });
@@ -55,11 +52,7 @@
           that.handleCreate(event.detail.title, event.detail.description);
         });
         that.addEventListener('todos-changed', function (event) {
-          if (that.todos.length > 0) {
-            that.set('isTodos', true);
-          } else {
-            that.set('isTodos', false);
-          }
+          that.checkTodosArray(that.todos);
         });
       },
       handleEdit: function (todoId) {
@@ -80,6 +73,13 @@
           description: description
         }
         this.push('todos', newTodo);
+      },
+      checkTodosArray: function (todoArr) {
+        if (todoArr.length > 0) {
+          this.set('isTodos', true);
+        } else {
+          this.set('isTodos', false);
+        }
       }
     });
   </script>
