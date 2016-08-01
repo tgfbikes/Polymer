@@ -26,10 +26,7 @@
       properties: {
         todos: {
           type: Array,
-          value: [
-            {id: 1, name: 'whats up', description: 'Nick is a joker'},
-            {id: 2, name: 'not much', description: 'Nick is a joker again'}
-          ],
+          value: [],
           notify: true
         },
         isTodos: {
@@ -40,7 +37,9 @@
       ready: function () {
         var that = this;
 
-        this.checkTodosArray(this.todos);
+        if (this.todos.length) {
+          this.checkTodosArray(this.todos);
+        }
 
         that.addEventListener('edit-todo', function (event) {
           that.handleEdit(event.detail.id);
@@ -56,10 +55,9 @@
         });
       },
       handleEdit: function (todoId) {
-        console.log('handling edit');
+        console.log(todoId);
       },
       handleDelete: function (todoId) {
-        var index;
         for (var i = 0; i < this.todos.length; i++) {
           if (this.todos[i].id === parseInt(todoId)) {
             this.splice('todos', i, 1);
