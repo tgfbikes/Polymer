@@ -50,15 +50,37 @@
      is: 'stv-todo-modal',
      properties: {
        title: String,
-       description: String
+       description: String,
+       edit: {
+         type: Object,
+         observer: '_updateInputs'
+       }
      },
-     handleCreateTodo: function (event) {
-       this.fire('create-todo', {
-         'title': this.title,
-         'description': this.description
-       });
+     _updateInputs: function () {
+       this.set('title', this.edit.title);
+       this.set('description', this.edit.description);
+     },
+     _clearInputs: function () {
        this.set('title', null);
        this.set('description', null);
+     },
+     handleCreateTodo: function (event) {
+       if (this.edit) {
+         this.fire('update-todo', {
+           'id': this.edit.id,
+           'title': this.title,
+           'description': this.description
+         });
+       } else {
+         this.fire('create-todo', {
+           'title': this.title,
+           'description': this.description
+         });
+       }
+       this._clearInputs();
+     },
+     ready: function () {
+       console.log(this.edit);
      }
    });
   </script>

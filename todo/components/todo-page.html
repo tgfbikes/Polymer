@@ -1,5 +1,6 @@
 <link rel="import" href="todo-list.html">
 <link rel="import" href="todo-nav-bar.html">
+<link rel="import" href="todo-modal.html">
 
 <dom-module id="stv-todos">
 
@@ -13,6 +14,7 @@
      }
     </style>
     <stv-todo-nav-bar></stv-todo-nav-bar>
+    <stv-todo-modal edit="{{edit}}"></stv-todo-modal>
     <stv-todos-list todos="[[todos]]"></stv-todos-list>
     <div class="no-todos" hidden$="{{isTodos}}">
       <h3>There are no things</h3>
@@ -32,6 +34,10 @@
         isTodos: {
           type: Boolean,
           value: false
+        },
+        edit: {
+          type: Object,
+          notify: true
         }
       },
       ready: function () {
@@ -44,6 +50,9 @@
         that.addEventListener('edit-todo', function (event) {
           that.handleEdit(event.detail.id);
         });
+        that.addEventListener('update-todo', function (event) {
+          that.handleUpdate(event.detail);
+        });
         that.addEventListener('delete-todo', function (event) {
           that.handleDelete(event.detail.id);
         });
@@ -55,7 +64,19 @@
         });
       },
       handleEdit: function (todoId) {
-        console.log(todoId);
+        for (var i = 0; i < this.todos.length; i++) {
+          if (this.todos[i].id === parseInt(todoId)) {
+            this.set('edit', this.todos[i]);
+            modal.open();
+          }
+        }
+      },
+      handleUpdate: function (todo) {
+        for (var i = 0; i < this.todos.length; i++) {
+          if (this.todos[i].id === parseInt(todo.id)) {
+            this.splice('todos', i, 1, todo);
+          }
+        }
       },
       handleDelete: function (todoId) {
         for (var i = 0; i < this.todos.length; i++) {
@@ -66,8 +87,8 @@
       },
       handleCreate: function (title, description) {
         var newTodo = {
-          id: this.todos.length + 1,
-          name: title,
+          id: new Date().getUTCMilliseconds(),
+          title: title,
           description: description
         }
         this.push('todos', newTodo);
