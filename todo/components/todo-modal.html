@@ -25,11 +25,11 @@
       <form is="iron-form" id="form">
         <paper-input-container>
           <label>Title</label>
-          <input is="iron-input" id="todoTitle" required>
+          <input is="iron-input" id="todoTitle" bind-value="{{title}}" required>
         </paper-input-container>
         <paper-input-container>
           <label>Description</label>
-          <input is="iron-input" id="todoDescription" required>
+          <input is="iron-input" id="todoDescription" bind-value="{{description}}" required>
         </paper-input-container>
         <div class="buttons">
           <paper-button
@@ -48,11 +48,17 @@
   <script>
    Polymer({
      is: 'stv-todo-modal',
+     properties: {
+       title: String,
+       description: String
+     },
      handleCreateTodo: function (event) {
        this.fire('create-todo', {
-         'title': this.$.todoTitle.value,
-         'description': this.$.todoDescription.value
+         'title': this.title,
+         'description': this.description
        });
+       this.set('title', null);
+       this.set('description', null);
      }
    });
   </script>
