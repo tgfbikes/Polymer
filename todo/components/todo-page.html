@@ -1,6 +1,5 @@
 <link rel="import" href="todo-list.html">
 <link rel="import" href="todo-nav-bar.html">
-<link rel="import" href="todo-modal.html">
 
 <dom-module id="stv-todos">
 
@@ -13,7 +12,7 @@
        font-family: Tahoma;
      }
     </style>
-    <stv-todo-nav-bar></stv-todo-nav-bar>
+
     <stv-todo-modal edit="{{edit}}"></stv-todo-modal>
     <stv-todos-list todos="[[todos]]"></stv-todos-list>
     <div class="no-todos" hidden$="{{isTodos}}">
