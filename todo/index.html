@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <script src="webcomponentsjs/webcomponents-lite.min.js"></script>
+    <script src="page/page.js"></script>
     <link rel="import" href="polymer/polymer.html">
     <link rel="import" href="iron-pages/iron-pages.html">
     <link rel="import" href="todo-page.html">
@@ -12,9 +13,25 @@
   </head>
   <body>
     <stv-todo-nav-bar></stv-todo-nav-bar>
-    <iron-pages selected="0">
-      <stv-todos></stv-todos>
-      <stv-about></stv-about>
-    </iron-pages>
+    <stv-todos></stv-todos>
+
+    <script>
+     var navBar = document.querySelector('stv-todo-nav-bar');
+     console.log(navBar);
+     navBar.addEventListener('click', function (event) {
+       event.preventDefault();
+       page('/about');
+     });
+     page.base('/');
+     page('/about', about);
+
+     page({
+       hashbang: true
+     });
+
+     function about () {
+       console.log('about page');
+     }
+    </script>
   </body>
 </html>
